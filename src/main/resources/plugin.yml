@@ -1,0 +1,4 @@
+name: FuckAround
+version: '${project.version}'
+main: fuckaround.fuckaround.FuckAround
+api-version: 1.19
