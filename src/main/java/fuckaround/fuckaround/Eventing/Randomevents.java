@@ -17,8 +17,7 @@ public class Randomevents implements Listener {
     @EventHandler
     public void WhatAmIDoing (AsyncPlayerChatEvent e) {
         Player winner = e.getPlayer();
-        Bukkit.getLogger().info(e.getMessage() + "");
-        if (e.getMessage().equals(String.valueOf(MathAnswer))) {
+        if (e.getMessage().equals(String.valueOf(MathAnswer)) && IsActive) {
             Component Message = Component.text(ChatColor.RED + "[MathRandom] " + ChatColor.DARK_AQUA + winner.getName() + " Has answered correctly" + " The correct was " + MathAnswer);
             broadcast(Message);
             winner.giveExp(100);

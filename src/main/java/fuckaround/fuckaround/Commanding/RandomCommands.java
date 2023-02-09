@@ -23,9 +23,14 @@ public class RandomCommands implements CommandExecutor {
     public static int Math2;
     public static int MathAnswer;
     public static boolean IsActive = false;
+    public static FuckAround getInstance() {
+        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("MathRandom");
+        if (plugin == null) {
+            throw new RuntimeException("'MathRandom' not found. 'MathRandom' plugin disabled?");
+        }
 
-
-
+        return ((FuckAround) plugin);
+    }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (command.getName().equalsIgnoreCase("mathrandom")) {
@@ -36,7 +41,7 @@ public class RandomCommands implements CommandExecutor {
             Component Message = Component.text(ChatColor.RED + "[MathRandom] " + ChatColor.AQUA + "What is " + Math1 + " + " + Math2);
             broadcast(Message);
             IsActive = true;
-            Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(new FuckAround(), new Wtf(), 60000);
+            Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(getInstance(), new Wtf(), 60000);
         }
         return false;
     }
