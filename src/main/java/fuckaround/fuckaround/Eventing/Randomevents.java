@@ -1,19 +1,28 @@
 package fuckaround.fuckaround.Eventing;
 
-import io.papermc.paper.event.player.AsyncChatEvent;
+import fuckaround.fuckaround.Commanding.RandomCommands;
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import java.util.concurrent.ThreadLocalRandom;
+import static org.bukkit.Bukkit.broadcast;
 
 public class Randomevents implements Listener {
-    int MathAnswer = ThreadLocalRandom.current().nextInt();
+    private final int MathAnswer = RandomCommands.MathAnswer;
+    public boolean IsActive = RandomCommands.IsActive;
     @EventHandler
-    public void WhatAmIDoing (AsyncChatEvent e) {
+    public void WhatAmIDoing (AsyncPlayerChatEvent e) {
         Player winner = e.getPlayer();
-        if (e.message().toString().equals(String.valueOf(MathAnswer)))
+        Bukkit.getLogger().info(e.getMessage() + "");
+        if (e.getMessage().equals(String.valueOf(MathAnswer))) {
+            Component Message = Component.text(ChatColor.RED + "[MathRandom] " + ChatColor.DARK_AQUA + winner.getName() + " Has answered correctly" + " The correct was " + MathAnswer);
+            broadcast(Message);
             winner.giveExp(100);
-            
+            IsActive = false;
+        }
     }
 }

@@ -1,4 +1,11 @@
-name: FuckAround
+name: MathRandom
 version: '${project.version}'
 main: fuckaround.fuckaround.FuckAround
-api-version: 1.19
+api-version: 1.13
+description: adds a Quick Math Minigame to chat
+commands:
+  mathrandom:
+    description: Use to start the quick math minigame
+    usage: /<command>
+    permission: mathrandom.admin
+    label: mathrandom
