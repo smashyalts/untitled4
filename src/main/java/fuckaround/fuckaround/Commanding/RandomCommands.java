@@ -18,11 +18,7 @@ import java.util.concurrent.TimeUnit;
 import static org.bukkit.Bukkit.broadcast;
 import static org.bukkit.Bukkit.broadcastMessage;
 
-public class RandomCommands implements CommandExecutor {
-    public static int Math1;
-    public static int Math2;
-    public static int MathAnswer;
-    public static boolean IsActive = false;
+public class RandomCommands extends FuckAround.AllINeed implements CommandExecutor {
     public static FuckAround getInstance() {
         Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("MathRandom");
         if (plugin == null) {
@@ -41,7 +37,8 @@ public class RandomCommands implements CommandExecutor {
             Component Message = Component.text(ChatColor.RED + "[MathRandom] " + ChatColor.AQUA + "What is " + Math1 + " + " + Math2);
             broadcast(Message);
             IsActive = true;
-            Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(getInstance(), new Wtf(), 60000);
+            Bukkit.getLogger().info(IsActive + "");
+            Bukkit.getServer().getScheduler().runTaskLater(getInstance(), new Wtf(), 60000);
         }
         return false;
     }
